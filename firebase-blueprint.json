@@ -1,0 +1,43 @@
+{
+  "entities": {
+    "Team": {
+      "title": "Team",
+      "description": "A team participating in the tournament",
+      "type": "object",
+      "properties": {
+        "id": { "type": "string" },
+        "name": { "type": "string" },
+        "logo": { "type": "string" },
+        "points": { "type": "number" },
+        "wins": { "type": "number" },
+        "matchesPlayed": { "type": "number" }
+      },
+      "required": ["id", "name", "logo", "points", "wins", "matchesPlayed"]
+    },
+    "Match": {
+      "title": "Match",
+      "description": "A tournament match",
+      "type": "object",
+      "properties": {
+        "id": { "type": "string" },
+        "stage": { "type": "string", "enum": ["QUARTER-FINALS", "SEMI-FINALS", "FINALS"] },
+        "team1Id": { "type": "string" },
+        "team2Id": { "type": "string" },
+        "winnerId": { "type": "string" },
+        "nextMatchId": { "type": "string" },
+        "bestOf": { "type": "number" }
+      },
+      "required": ["id", "stage", "bestOf"]
+    }
+  },
+  "firestore": {
+    "teams": {
+      "schema": { "$ref": "Team" },
+      "description": "Collection of tournament teams"
+    },
+    "matches": {
+      "schema": { "$ref": "Match" },
+      "description": "Collection of tournament matches"
+    }
+  }
+}
